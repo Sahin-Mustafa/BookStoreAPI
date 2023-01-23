@@ -9,7 +9,7 @@ namespace BookAPI.Persistance
 {
     static class Configuration
     {
-        public static string ConnectionString
+        static public string ConnectionString
         {
             get
             {
@@ -17,7 +17,7 @@ namespace BookAPI.Persistance
                 configurationManager.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../../Presentation/BookAPI.API"));
                 configurationManager.AddJsonFile("appsettings.json");
                 return configurationManager.GetConnectionString("MSSql");
-            };
+            }
         }
     }
 }

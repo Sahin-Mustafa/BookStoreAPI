@@ -13,9 +13,9 @@ namespace BookAPI.Persistance
 {
     public static class ServiceRegistration
     {
-        public static void AddPersistanceService(this IServiceCollection services)
+        public static void AddPersistanceServices(this IServiceCollection services)
         {
-            services.AddDbContext<BookAPIDbContext>(opt => opt.UseSqlServer(Configuration.ConnectionString));
+            services.AddDbContext<BookAPIDbContext>(options => options.UseSqlServer(Configuration.ConnectionString));
             services.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
             services.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();
         }

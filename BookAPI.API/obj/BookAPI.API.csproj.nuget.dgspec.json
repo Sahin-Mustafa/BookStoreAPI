@@ -28,9 +28,6 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\musta\\source\\repos\\BookAPI\\Core\\BookAPI.Application\\BookAPI.Application.csproj": {
-                "projectPath": "C:\\Users\\musta\\source\\repos\\BookAPI\\Core\\BookAPI.Application\\BookAPI.Application.csproj"
-              },
               "C:\\Users\\musta\\source\\repos\\BookAPI\\Infrastructure\\BookAPI.Persistance\\BookAPI.Persistance.csproj": {
                 "projectPath": "C:\\Users\\musta\\source\\repos\\BookAPI\\Infrastructure\\BookAPI.Persistance\\BookAPI.Persistance.csproj"
               }
@@ -47,6 +44,12 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.13, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
@@ -116,6 +119,12 @@
           "targetAlias": "net6.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.13, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.13, )"
             },
@@ -263,15 +272,15 @@
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[7.0.0, )"
             },
             "Microsoft.Extensions.Configuration.Json": {
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[7.0.0, )"
             },
             "Microsoft.Extensions.DependencyInjection.Abstractions": {
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[7.0.0, )"
             }
           },
           "imports": [

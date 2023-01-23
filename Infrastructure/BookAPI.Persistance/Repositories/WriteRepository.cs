@@ -27,7 +27,7 @@ namespace BookAPI.Persistance.Repositories
             return entityEntry.State == EntityState.Added;
         }
 
-        public bool AddRange(IEnumerable<T> data)
+        public bool AddRange(List<T> data)
         {
             Table.AddRange(data);
             return true;
