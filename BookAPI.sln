@@ -15,6 +15,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookAPI.Infrastructure", "I
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookAPI.Persistance", "Infrastructure\BookAPI.Persistance\BookAPI.Persistance.csproj", "{90F11518-CB5D-4940-BBA8-5707FDF2D715}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{CBC2094E-9EB8-48A7-9F9B-C606D201527B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookAPI.API", "Presentation\BookAPI.API\BookAPI.API.csproj", "{C94C1D4B-DF25-4FB4-B6CE-407D51BCF552}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +41,10 @@ Global
 		{90F11518-CB5D-4940-BBA8-5707FDF2D715}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90F11518-CB5D-4940-BBA8-5707FDF2D715}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90F11518-CB5D-4940-BBA8-5707FDF2D715}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C94C1D4B-DF25-4FB4-B6CE-407D51BCF552}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C94C1D4B-DF25-4FB4-B6CE-407D51BCF552}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C94C1D4B-DF25-4FB4-B6CE-407D51BCF552}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C94C1D4B-DF25-4FB4-B6CE-407D51BCF552}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +54,7 @@ Global
 		{58F34BD1-A5F4-40AC-B92A-582CA3FCB74C} = {4F79A431-3202-4BC3-8291-D775EFBDD3BF}
 		{D85AE7D0-5C0F-4EE2-95DA-96FA1BF34615} = {0B0D6C11-5A53-452F-AED1-D008FE31BA1F}
 		{90F11518-CB5D-4940-BBA8-5707FDF2D715} = {0B0D6C11-5A53-452F-AED1-D008FE31BA1F}
+		{C94C1D4B-DF25-4FB4-B6CE-407D51BCF552} = {CBC2094E-9EB8-48A7-9F9B-C606D201527B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DF7BE706-7EF4-4E55-946B-42522A6CEE76}
