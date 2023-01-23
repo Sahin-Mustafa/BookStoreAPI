@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{4F79A431-3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{0B0D6C11-5A53-452F-AED1-D008FE31BA1F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{B4784C8B-CB3D-4D7F-99DC-7E08B88BFD61}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookAPI.Application", "Core\BookAPI.Application\BookAPI.Application.csproj", "{7064F96A-5888-42EF-93B9-9FB423D6D6A1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookAPI.Domain", "Core\BookAPI.Domain\BookAPI.Domain.csproj", "{58F34BD1-A5F4-40AC-B92A-582CA3FCB74C}"
