@@ -9,15 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{B4784C8B-CB3D-4D7F-99DC-7E08B88BFD61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookAPI.Application", "Core\BookAPI.Application\BookAPI.Application.csproj", "{7064F96A-5888-42EF-93B9-9FB423D6D6A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookAPI.Application", "Core\BookAPI.Application\BookAPI.Application.csproj", "{7064F96A-5888-42EF-93B9-9FB423D6D6A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookAPI.Domain", "Core\BookAPI.Domain\BookAPI.Domain.csproj", "{58F34BD1-A5F4-40AC-B92A-582CA3FCB74C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookAPI.Domain", "Core\BookAPI.Domain\BookAPI.Domain.csproj", "{58F34BD1-A5F4-40AC-B92A-582CA3FCB74C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookAPI.Infrastructure", "Infrastructure\BookAPI.Infrastructure\BookAPI.Infrastructure.csproj", "{D85AE7D0-5C0F-4EE2-95DA-96FA1BF34615}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookAPI.Infrastructure", "Infrastructure\BookAPI.Infrastructure\BookAPI.Infrastructure.csproj", "{D85AE7D0-5C0F-4EE2-95DA-96FA1BF34615}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookAPI.Persistance", "Infrastructure\BookAPI.Persistance\BookAPI.Persistance.csproj", "{90F11518-CB5D-4940-BBA8-5707FDF2D715}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookAPI.API", "BookAPI.API\BookAPI.API.csproj", "{AE7A793D-9352-4FFF-9DE8-060FA36F7705}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookAPI.Persistance", "Infrastructure\BookAPI.Persistance\BookAPI.Persistance.csproj", "{90F11518-CB5D-4940-BBA8-5707FDF2D715}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +39,6 @@ Global
 		{90F11518-CB5D-4940-BBA8-5707FDF2D715}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90F11518-CB5D-4940-BBA8-5707FDF2D715}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90F11518-CB5D-4940-BBA8-5707FDF2D715}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AE7A793D-9352-4FFF-9DE8-060FA36F7705}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE7A793D-9352-4FFF-9DE8-060FA36F7705}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE7A793D-9352-4FFF-9DE8-060FA36F7705}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE7A793D-9352-4FFF-9DE8-060FA36F7705}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,7 +48,6 @@ Global
 		{58F34BD1-A5F4-40AC-B92A-582CA3FCB74C} = {4F79A431-3202-4BC3-8291-D775EFBDD3BF}
 		{D85AE7D0-5C0F-4EE2-95DA-96FA1BF34615} = {0B0D6C11-5A53-452F-AED1-D008FE31BA1F}
 		{90F11518-CB5D-4940-BBA8-5707FDF2D715} = {0B0D6C11-5A53-452F-AED1-D008FE31BA1F}
-		{AE7A793D-9352-4FFF-9DE8-060FA36F7705} = {B4784C8B-CB3D-4D7F-99DC-7E08B88BFD61}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DF7BE706-7EF4-4E55-946B-42522A6CEE76}
