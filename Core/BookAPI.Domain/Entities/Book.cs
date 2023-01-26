@@ -4,6 +4,12 @@ namespace BookAPI.Domain.Entites
 {
     public class Book
     {
+        public Book()
+        {
+            Authors = new List<Author>();
+            Comments= new List<Comment>();
+            BookShoppingCards= new List<BookShoppingCard>();
+        }
         public int Id { get; set; }
         public int CategoryId { get; set; }
 
@@ -23,6 +29,6 @@ namespace BookAPI.Domain.Entites
         public List<Author> Authors { get; set; }
         public Category Category { get; set; }
         public List<Comment> Comments { get; set; }
-        public List<BookShoppingCard> bookShoppingCards { get; set; }
+        public List<BookShoppingCard> BookShoppingCards { get; set; }
     }
 }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookAPI.Persistance.Migrations
 {
     [DbContext(typeof(BookAPIDbContext))]
-    [Migration("20230123203835_mig1")]
+    [Migration("20230126112425_mig1")]
     partial class mig1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -274,8 +274,7 @@ namespace BookAPI.Persistance.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(16)
-                        .HasColumnType("nvarchar(16)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
                         .HasMaxLength(20)
@@ -284,6 +283,32 @@ namespace BookAPI.Persistance.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("BookAPI.Domain.Entites.Member", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("Members");
                 });
 
             modelBuilder.Entity("BookAPI.Domain.Entites.Order", b =>
@@ -336,6 +361,23 @@ namespace BookAPI.Persistance.Migrations
                     b.HasIndex("OrderId");
 
                     b.ToTable("OrderDetails");
+                });
+
+            modelBuilder.Entity("BookAPI.Domain.Entites.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("BookAPI.Domain.Entites.ShoppingCard", b =>
@@ -407,13 +449,13 @@ namespace BookAPI.Persistance.Migrations
             modelBuilder.Entity("BookAPI.Domain.Entites.BookShoppingCard", b =>
                 {
                     b.HasOne("BookAPI.Domain.Entites.Book", "Book")
-                        .WithMany("bookShoppingCards")
+                        .WithMany("BookShoppingCards")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BookAPI.Domain.Entites.ShoppingCard", "ShoppingCard")
-                        .WithMany("bookShoppingCards")
+                        .WithMany("BookShoppingCards")
                         .HasForeignKey("ShoppingCardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -440,6 +482,17 @@ namespace BookAPI.Persistance.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("BookAPI.Domain.Entites.Member", b =>
+                {
+                    b.HasOne("BookAPI.Domain.Entites.Role", "Role")
+                        .WithMany("Members")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("BookAPI.Domain.Entites.Order", b =>
@@ -475,7 +528,7 @@ namespace BookAPI.Persistance.Migrations
                     b.HasOne("BookAPI.Domain.Entites.Order", "Order")
                         .WithMany("ShoppingCards")
                         .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.ClientNoAction)
                         .IsRequired();
 
                     b.Navigation("Customer");
@@ -490,9 +543,9 @@ namespace BookAPI.Persistance.Migrations
 
             modelBuilder.Entity("BookAPI.Domain.Entites.Book", b =>
                 {
-                    b.Navigation("Comments");
+                    b.Navigation("BookShoppingCards");
 
-                    b.Navigation("bookShoppingCards");
+                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("BookAPI.Domain.Entites.Category", b =>
@@ -516,9 +569,14 @@ namespace BookAPI.Persistance.Migrations
                     b.Navigation("ShoppingCards");
                 });
 
+            modelBuilder.Entity("BookAPI.Domain.Entites.Role", b =>
+                {
+                    b.Navigation("Members");
+                });
+
             modelBuilder.Entity("BookAPI.Domain.Entites.ShoppingCard", b =>
                 {
-                    b.Navigation("bookShoppingCards");
+                    b.Navigation("BookShoppingCards");
                 });
 #pragma warning restore 612, 618
         }

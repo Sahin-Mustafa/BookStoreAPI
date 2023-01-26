@@ -4,6 +4,10 @@ namespace BookAPI.Domain.Entites
 {
     public class Category
     {
+        public Category()
+        {
+            Books= new List<Book>();
+        }
         public int Id { get; set; }
         public int BookId { get; set; }
 

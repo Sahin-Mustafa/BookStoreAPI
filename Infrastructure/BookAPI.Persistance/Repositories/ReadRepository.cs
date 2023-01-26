@@ -28,5 +28,6 @@ namespace BookAPI.Persistance.Repositories
         public T GetSingle(Expression<Func<T, bool>> method) => Table.FirstOrDefault(method);
 
         public IQueryable<T> GetWhere(Expression<Func<T, bool>> method)=>Table.Where(method);
+        
     }
 }

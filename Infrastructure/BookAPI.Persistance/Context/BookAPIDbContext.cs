@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +17,8 @@ namespace BookAPI.Persistance.Context
         public DbSet<Author> Authors { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Member> Members { get; set; }
         public DbSet<ShoppingCard> ShoppingCards { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
@@ -28,6 +31,11 @@ namespace BookAPI.Persistance.Context
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<BookShoppingCard>()
                 .HasKey(x => new { x.BookId, x.ShoppingCardId });
+            
+            //cut cascade cycle
+            modelBuilder.Entity<Order>().HasMany(x=>x.ShoppingCards).WithOne(x => x.Order)
+            .HasForeignKey(x => x.OrderId)
+            .OnDelete(DeleteBehavior.ClientNoAction);
         }
     }
 }

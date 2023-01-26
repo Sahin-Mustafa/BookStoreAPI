@@ -4,6 +4,10 @@ namespace BookAPI.Domain.Entites
 {
     public class Address
     {
+        public Address()
+        {
+            Orders = new List<Order>();
+        }
         public int Id { get; set; }
         public int CustomerId { get; set; }
         [MaxLength(50)]

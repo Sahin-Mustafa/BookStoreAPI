@@ -2,6 +2,11 @@
 {
     public class Order
     {
+        public Order()
+        {
+            ShoppingCards= new List<ShoppingCard>();
+            OrderDetails = new List<OrderDetail>();
+        }
         public int Id { get; set; }
         public int AddressId { get; set; }
         public DateTime OrderDate { get; set; }= DateTime.Now;
