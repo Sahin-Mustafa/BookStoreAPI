@@ -9,14 +9,14 @@ namespace BookAPI.API
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddCors(opt=>
-                                     opt.AddDefaultPolicy(policy=>
+            builder.Services.AddCors(opt =>
+                                     opt.AddDefaultPolicy(policy =>
                                                           policy.AllowAnyHeader()
                                                           .AllowAnyMethod()
                                                           .AllowAnyOrigin()));
             // Add services to the container.
             builder.Services.AddPersistanceServices();
-            builder.Services.AddControllers().AddFluentValidation(conf=>conf.RegisterValidatorsFromAssemblyContaining<CreateCustomer>());
+            builder.Services.AddControllers().AddFluentValidation(conf => conf.RegisterValidatorsFromAssemblyContaining<CreateCustomer>());
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

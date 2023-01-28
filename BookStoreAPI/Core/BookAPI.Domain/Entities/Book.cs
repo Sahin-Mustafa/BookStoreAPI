@@ -9,6 +9,7 @@ namespace BookAPI.Domain.Entites
             Authors = new List<Author>();
             Comments= new List<Comment>();
             BookShoppingCards= new List<BookShoppingCard>();
+            BookImages = new List<BookImg>(); 
         }
         public int Id { get; set; }
         public int CategoryId { get; set; }
@@ -20,6 +21,7 @@ namespace BookAPI.Domain.Entites
         public string Publisher { get; set; }
         public ushort UnitPrice { get; set; }
         public ushort Stock { get; set; }
+        
         public ushort? NumberOfPage { get; set; }
         public DateTime CreatedTime { get; set; }= DateTime.Now;
         public DateTime? ModifiedDate { get; set; }
@@ -27,6 +29,7 @@ namespace BookAPI.Domain.Entites
 
         //navigation properties
         public List<Author> Authors { get; set; }
+        public List<BookImg> BookImages { get; set; }
         public Category Category { get; set; }
         public List<Comment> Comments { get; set; }
         public List<BookShoppingCard> BookShoppingCards { get; set; }

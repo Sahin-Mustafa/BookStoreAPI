@@ -1,4 +1,6 @@
 ﻿using BookAPI.Application.Repositories;
+using BookAPI.Application.Services;
+using BookAPI.Domain.Entites;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,30 +10,27 @@ namespace BookAPI.API.Controllers
     [ApiController]
     public class BookController : ControllerBase
     {
-        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IFileService _fileService;
         private readonly IBookReadRepository _bookReadRepository;
         private readonly IBookWriteRepository _bookWriteRepository;
-        public BookController(IBookWriteRepository bookWriteRepository, IBookReadRepository bookReadRepository, IWebHostEnvironment webHostEnvironment)
+        public BookController(IBookWriteRepository bookWriteRepository, IBookReadRepository bookReadRepository, IWebHostEnvironment webHostEnvironment, IFileService fileService)
         {
             _bookWriteRepository = bookWriteRepository;
             _bookReadRepository = bookReadRepository;
-            _webHostEnvironment = webHostEnvironment;
+            _fileService = fileService;
         }
 
-        [HttpPost("[action]")]
-        public  IActionResult Upload()
+        [HttpPost("{id}/[action]")]
+        public  IActionResult UploadImg(int id)
         {
-            string uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "resource/image");
-            if(!Directory.Exists(uploadPath))
-                Directory.CreateDirectory(uploadPath);
-
-            foreach (IFormFile file in Request.Form.Files)
+            List<string> paths =_fileService.Upload("resource/book-images", Request.Form.Files);
+            Book book = _bookReadRepository.GetById(id);
+            foreach (string path in paths)
             {
-                string fullPath = Path.Combine(uploadPath, file.FileName);
-                using FileStream fileStream = new(fullPath, FileMode.Create, FileAccess.Write, FileShare.None, 1024*1024,useAsync:false);
-                file.CopyTo(fileStream);
-                fileStream.Flush();
+                book.BookImages.Add(new() {Path=path});
             }
+            _bookWriteRepository.Update(book);
+            _bookWriteRepository.Save();
             return Ok();
         }
     }

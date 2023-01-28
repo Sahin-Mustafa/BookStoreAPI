@@ -1,5 +1,7 @@
 ﻿using BookAPI.Application.Repositories;
+using BookAPI.Application.Services;
 using BookAPI.Persistance.Concretes;
+using BookAPI.Persistance.Concretes.FileService;
 using BookAPI.Persistance.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +18,7 @@ namespace BookAPI.Persistance
         public static void AddPersistanceServices(this IServiceCollection services)
         {
             services.AddDbContext<BookAPIDbContext>(options => options.UseSqlServer(Configuration.ConnectionString));
+            services.AddScoped<IFileService, FileService>();
             services.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
             services.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();
             services.AddScoped<IBookWriteRepository, BookWriteRepository>();
