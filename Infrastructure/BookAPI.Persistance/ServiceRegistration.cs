@@ -18,6 +18,8 @@ namespace BookAPI.Persistance
             services.AddDbContext<BookAPIDbContext>(options => options.UseSqlServer(Configuration.ConnectionString));
             services.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
             services.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();
+            services.AddScoped<IBookWriteRepository, BookWriteRepository>();
+            services.AddScoped<IBookWriteRepository, BookWriteRepository>();
         }
     }
 }

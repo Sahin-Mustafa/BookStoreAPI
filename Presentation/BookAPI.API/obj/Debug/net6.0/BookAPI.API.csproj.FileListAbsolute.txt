@@ -83,3 +83,6 @@ C:\Users\musta\source\repos\BookAPI\Presentation\BookAPI.API\obj\Debug\net6.0\re
 C:\Users\musta\source\repos\BookAPI\Presentation\BookAPI.API\obj\Debug\net6.0\BookAPI.API.pdb
 C:\Users\musta\source\repos\BookAPI\Presentation\BookAPI.API\obj\Debug\net6.0\BookAPI.API.genruntimeconfig.cache
 C:\Users\musta\source\repos\BookAPI\Presentation\BookAPI.API\obj\Debug\net6.0\ref\BookAPI.API.dll
+C:\Users\musta\source\repos\BookAPI\Presentation\BookAPI.API\bin\Debug\net6.0\FluentValidation.dll
+C:\Users\musta\source\repos\BookAPI\Presentation\BookAPI.API\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
+C:\Users\musta\source\repos\BookAPI\Presentation\BookAPI.API\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll

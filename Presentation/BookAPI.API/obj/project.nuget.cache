@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "1/u+7H0oFOZpGG6oxZYSw0TstzuDX4Cazqww+JaI8rg9X8EnLPF9uZUGWSFlWsyA1OIL3LiCjP8DUx1+buXinA==",
+  "dgSpecHash": "WqCADYmhM7IrF9Ic0NKID0FEj1A0kCA/FjgnXVW2QTDf4eMN6xOL9HEc+tA+xUVzzz6KeSIiInjmgpnFMwX3iA==",
   "success": true,
   "projectFilePath": "C:\\Users\\musta\\source\\repos\\BookAPI\\Presentation\\BookAPI.API\\BookAPI.API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\musta\\.nuget\\packages\\fluentvalidation\\11.4.0\\fluentvalidation.11.4.0.nupkg.sha512",
+    "C:\\Users\\musta\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.2.2\\fluentvalidation.aspnetcore.11.2.2.nupkg.sha512",
+    "C:\\Users\\musta\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.4.0\\fluentvalidation.dependencyinjectionextensions.11.4.0.nupkg.sha512",
     "C:\\Users\\musta\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\musta\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\musta\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
