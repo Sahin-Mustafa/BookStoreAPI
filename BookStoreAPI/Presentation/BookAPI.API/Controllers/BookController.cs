@@ -20,7 +20,7 @@ namespace BookAPI.API.Controllers
             _fileService = fileService;
         }
 
-        [HttpPost("{id}/[action]")]
+        [HttpPut("{id}/[action]")]
         public  IActionResult UploadImg(int id)
         {
             List<string> paths =_fileService.Upload("resource/book-images", Request.Form.Files);
