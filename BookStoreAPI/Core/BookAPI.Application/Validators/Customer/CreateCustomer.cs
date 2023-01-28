@@ -1,4 +1,4 @@
-﻿using BookAPI.Application.Models.Customer;
+﻿using BookAPI.Application.Features.Commands.CreateCustomer;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BookAPI.Application.Validators.Customer
 {
-    public class CreateCustomer : AbstractValidator<ModelCreateCustomer>
+    public class CreateCustomer : AbstractValidator<CreateCustomerCommandRequest>
     {
         public CreateCustomer()
         {

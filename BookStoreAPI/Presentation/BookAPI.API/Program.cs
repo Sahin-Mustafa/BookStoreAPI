@@ -1,5 +1,6 @@
-using BookAPI.Application.Validators.Customer;
+using BookAPI.Application;
 using BookAPI.Persistance;
+using BookAPI.Application.Validators.Customer;
 using FluentValidation.AspNetCore;
 
 namespace BookAPI.API
@@ -16,6 +17,7 @@ namespace BookAPI.API
                                                           .AllowAnyOrigin()));
             // Add services to the container.
             builder.Services.AddPersistanceServices();
+            builder.Services.AddApplicationSerrvices();
             builder.Services.AddControllers().AddFluentValidation(conf => conf.RegisterValidatorsFromAssemblyContaining<CreateCustomer>());
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

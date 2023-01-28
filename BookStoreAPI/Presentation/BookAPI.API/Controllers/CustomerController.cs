@@ -1,10 +1,13 @@
-﻿using BookAPI.Application.Models.Customer;
+﻿using BookAPI.Application.Features.Commands.CreateCustomer;
+using BookAPI.Application.Features.Queries.GetAllCustomers;
 using BookAPI.Application.Repositories;
 using BookAPI.Domain.Entites;
 using BookAPI.Persistance.Context;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
+using System.Net;
 
 namespace BookAPI.API.Controllers
 {
@@ -14,16 +17,20 @@ namespace BookAPI.API.Controllers
     {
         private ICustomerReadRepository customerRead;
         private ICustomerWriteRepository customerWrite;
-        public CustomerController(ICustomerReadRepository customerRead, ICustomerWriteRepository customerWrite)
+        readonly IMediator mediator;
+        public CustomerController(ICustomerReadRepository customerRead, ICustomerWriteRepository customerWrite, IMediator mediator)
         {
             this.customerRead = customerRead;
             this.customerWrite = customerWrite;
+            this.mediator = mediator;
         }
 
         [HttpGet]
-        public IActionResult GetCustomers()
+        public async Task<IActionResult> GetAllCustomers()
         {
-            return Ok(customerRead.GetAll().ToList());
+            GetAllCustomersQueryRequest getAllCustomersQueryRequest=new GetAllCustomersQueryRequest();
+            List<GetAllCustomersQueryResponse> response = await mediator.Send(getAllCustomersQueryRequest);
+            return Ok(response);
         }
 
         [HttpGet("{id}")]
@@ -32,18 +39,12 @@ namespace BookAPI.API.Controllers
             return Ok(customerRead.GetById(id)); 
         }
         [HttpPost]
-        public IActionResult AddCustomer(ModelCreateCustomer model)
+        public async Task<IActionResult> AddCustomer(CreateCustomerCommandRequest createCustomerCommandRequest )
         {
-            Customer customer = customerRead.GetSingle(c => c.Email == model.Email && c.Password == model.Password);
-
-            if (customer is null)
+           CreateCustomerCommandResponse response = await mediator.Send(createCustomerCommandRequest);
+            if(response.IsSuccess) 
             {
-                customer.Email = model.Email;
-                customer.Password = model.Password;
-                bool result = customerWrite.Add(customer);
-                customerWrite.Save();
-
-                return Created("", customer);
+                return StatusCode((int)HttpStatusCode.Created);
             }
             return BadRequest();
 
