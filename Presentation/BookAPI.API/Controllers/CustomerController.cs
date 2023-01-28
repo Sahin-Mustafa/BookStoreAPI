@@ -1,4 +1,4 @@
-﻿using BookAPI.API.Model;
+﻿using BookAPI.Application.Models.Customer;
 using BookAPI.Application.Repositories;
 using BookAPI.Domain.Entites;
 using BookAPI.Persistance.Context;
@@ -32,17 +32,17 @@ namespace BookAPI.API.Controllers
             return Ok(customerRead.GetById(id)); 
         }
         [HttpPost]
-        public IActionResult AddCustomer(ModelAddCustomer model)
+        public IActionResult AddCustomer(ModelCreateCustomer model)
         {
             Customer customer = customerRead.GetSingle(c => c.Email == model.Email && c.Password == model.Password);
 
-            if(customer is null)
+            if (customer is null)
             {
                 customer.Email = model.Email;
                 customer.Password = model.Password;
                 bool result = customerWrite.Add(customer);
                 customerWrite.Save();
-                
+
                 return Created("", customer);
             }
             return BadRequest();
