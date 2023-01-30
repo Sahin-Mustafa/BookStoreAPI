@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookAPI.Application.Features.Commands.CreateCustomer
+namespace BookAPI.Application.Features.Commands.Customer.CreateCustomer
 {
     public class CreateCustomerCommandResponse
     {
-        public bool IsSuccess { get; set;}
+        public bool IsSuccess { get; set; }
     }
 }

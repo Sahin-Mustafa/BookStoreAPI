@@ -1,5 +1,5 @@
 ﻿using BookAPI.Application.Repositories;
-using BookAPI.Domain.Entites;
+using C=BookAPI.Domain.Entites;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -7,32 +7,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookAPI.Application.Features.Commands.CreateCustomer
+namespace BookAPI.Application.Features.Commands.Customer.CreateCustomer
 {
     public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommandRequest, CreateCustomerCommandResponse>
     {
-        private ICustomerReadRepository customerRead;
-        private ICustomerWriteRepository customerWrite;
+        private ICustomerReadRepository customerReadRepository;
+        private ICustomerWriteRepository customerWriteRepository;
 
         public CreateCustomerCommandHandler(ICustomerReadRepository customerRead, ICustomerWriteRepository customerWrite)
         {
-            this.customerRead = customerRead;
-            this.customerWrite = customerWrite;
+            this.customerReadRepository = customerRead;
+            this.customerWriteRepository = customerWrite;
         }
 
         public async Task<CreateCustomerCommandResponse> Handle(CreateCustomerCommandRequest request, CancellationToken cancellationToken)
         {
-            Customer isHave = customerRead.GetSingle(c => c.Email == request.Email && c.Password == request.Password);
+            C.Customer isHave = customerReadRepository.GetSingle(c => c.Email == request.Email && c.Password == request.Password);
 
             if (isHave is null)
             {
-                Customer customer = new Customer
+                C.Customer customer = new C.Customer
                 {
                     Email = request.Email,
                     Password = request.Password
                 };
-                customerWrite.Add(customer);
-                int result = customerWrite.Save();
+                customerWriteRepository.Add(customer);
+                int result = customerWriteRepository.Save();
 
                 return new() { IsSuccess = true };
 

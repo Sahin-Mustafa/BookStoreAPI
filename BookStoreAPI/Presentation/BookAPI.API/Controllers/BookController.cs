@@ -1,6 +1,7 @@
 ﻿using BookAPI.Application.Repositories;
 using BookAPI.Application.Services;
 using BookAPI.Domain.Entites;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,7 @@ namespace BookAPI.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes ="admin")]
     public class BookController : ControllerBase
     {
         private readonly IFileService _fileService;

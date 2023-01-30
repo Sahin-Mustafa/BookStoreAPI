@@ -1,4 +1,4 @@
-﻿using BookAPI.Application.Features.Commands.CreateCustomer;
+﻿using BookAPI.Application.Features.Commands.Customer.CreateCustomer;
 using FluentValidation;
 using System;
 using System.Collections.Generic;

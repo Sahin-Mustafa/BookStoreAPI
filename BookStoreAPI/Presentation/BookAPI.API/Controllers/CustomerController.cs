@@ -1,9 +1,11 @@
-﻿using BookAPI.Application.Features.Commands.CreateCustomer;
+﻿using BookAPI.Application.Features.Commands.Customer.CreateCustomer;
+using BookAPI.Application.Features.Commands.Customer.LoginCustomer;
 using BookAPI.Application.Features.Queries.GetAllCustomers;
 using BookAPI.Application.Repositories;
 using BookAPI.Domain.Entites;
 using BookAPI.Persistance.Context;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
@@ -13,33 +15,35 @@ namespace BookAPI.API.Controllers
 {
     [Route("api/[controller]s")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = "admin")]
     public class CustomerController : ControllerBase
     {
-        private ICustomerReadRepository customerRead;
-        private ICustomerWriteRepository customerWrite;
+        private ICustomerReadRepository customerReadRepository;
+        private ICustomerWriteRepository customerWriteRepository;
         readonly IMediator mediator;
         public CustomerController(ICustomerReadRepository customerRead, ICustomerWriteRepository customerWrite, IMediator mediator)
         {
-            this.customerRead = customerRead;
-            this.customerWrite = customerWrite;
+            this.customerReadRepository = customerRead;
+            this.customerWriteRepository = customerWrite;
             this.mediator = mediator;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllCustomers()
+        public async Task<IActionResult> GetAllCustomers([FromQuery] GetAllCustomersQueryRequest getAllCustomersQueryRequest)
         {
-            GetAllCustomersQueryRequest getAllCustomersQueryRequest=new GetAllCustomersQueryRequest();
             List<GetAllCustomersQueryResponse> response = await mediator.Send(getAllCustomersQueryRequest);
             return Ok(response);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        //FromRoute
+        public IActionResult GetById([FromRoute] int id)
         {
-            return Ok(customerRead.GetById(id)); 
+            return Ok(customerReadRepository.GetById(id)); 
         }
         [HttpPost]
-        public async Task<IActionResult> AddCustomer(CreateCustomerCommandRequest createCustomerCommandRequest )
+        [AllowAnonymous]
+        public async Task<IActionResult> CreateCustomer([FromBody] CreateCustomerCommandRequest createCustomerCommandRequest )
         {
            CreateCustomerCommandResponse response = await mediator.Send(createCustomerCommandRequest);
             if(response.IsSuccess) 
@@ -47,7 +51,14 @@ namespace BookAPI.API.Controllers
                 return StatusCode((int)HttpStatusCode.Created);
             }
             return BadRequest();
+        }
+        [HttpPost("[action]")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login([FromBody] LoginCustomerCommandRequest loginCustomerCommandRequest)
+        {
+            LoginCustomerCommandResponse response = await mediator.Send(loginCustomerCommandRequest);
 
+            return Ok(response);
         }
     }
 }
