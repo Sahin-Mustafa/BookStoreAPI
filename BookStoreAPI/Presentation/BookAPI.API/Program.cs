@@ -33,12 +33,13 @@ namespace BookAPI.API
                     opt.TokenValidationParameters = new()
                     {
                         ValidateAudience = false, //hagni originlerin ulaþabileceði
-                        ValidateIssuer= false,//token kim daðýtýyor
-                        ValidateLifetime= true,//token geçerlilik süresi
-                        ValidateIssuerSigningKey= true,
+                        ValidateIssuer = false,//token kim daðýtýyor
+                        ValidateLifetime = true,//token geçerlilik süresi
+                        ValidateIssuerSigningKey = true,
 
-                        
+                        LifetimeValidator = ( notBefore, expires, securityToken, validationParameters) => expires != null ? expires>DateTime.UtcNow:false,
                         IssuerSigningKey=new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Token:SigningKey"]))
+                        
                     };
                 });
 
