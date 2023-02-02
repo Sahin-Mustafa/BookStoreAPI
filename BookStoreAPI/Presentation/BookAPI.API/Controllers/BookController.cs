@@ -23,16 +23,16 @@ namespace BookAPI.API.Controllers
         }
 
         [HttpPut("{id}/[action]")]
-        public  IActionResult UploadImg(int id)
+        public async Task<IActionResult> UploadImg(int id)
         {
             List<string> paths =_fileService.Upload("resource/book-images", Request.Form.Files);
-            Book book = _bookReadRepository.GetById(id);
+            Book book = await _bookReadRepository.GetByIdAsync(id);
             foreach (string path in paths)
             {
                 book.BookImages.Add(new() {Path=path});
             }
             _bookWriteRepository.Update(book);
-            _bookWriteRepository.Save();
+            await _bookWriteRepository.SaveAsync();
             return Ok();
         }
     }

@@ -22,7 +22,7 @@ namespace BookAPI.Application.Features.Commands.Customer.CreateCustomer
 
         public async Task<CreateCustomerCommandResponse> Handle(CreateCustomerCommandRequest request, CancellationToken cancellationToken)
         {
-            C.Customer isHave = customerReadRepository.GetSingle(c => c.Email == request.Email && c.Password == request.Password);
+            C.Customer isHave = await customerReadRepository.GetSingleAsync(c => c.Email == request.Email && c.Password == request.Password);
 
             if (isHave is null)
             {
@@ -31,8 +31,8 @@ namespace BookAPI.Application.Features.Commands.Customer.CreateCustomer
                     Email = request.Email,
                     Password = request.Password
                 };
-                customerWriteRepository.Add(customer);
-                int result = customerWriteRepository.Save();
+                await customerWriteRepository.AddAsync(customer);
+                int result = await customerWriteRepository.SaveAsync();
 
                 return new() { IsSuccess = true };
 

@@ -7,6 +7,9 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
+using System.Collections.ObjectModel;
+using System.Security.Claims;
+
 namespace BookAPI.API
 {
     public class Program
@@ -14,16 +17,18 @@ namespace BookAPI.API
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddCors(opt =>
-                                     opt.AddDefaultPolicy(policy =>
-                                                          policy.AllowAnyHeader()
-                                                          .AllowAnyMethod()
-                                                          .AllowAnyOrigin()));
-            // Add services to the container.
+            //Cors
+            builder.Services.AddCors(opt => opt.AddDefaultPolicy(policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
+            //IoC
+            builder.Services.AddHttpContextAccessor();//clienten gelen requestlerikatmanlarda ulaþmamaýzý saðlar IHttpContextAccessor
             builder.Services.AddApplicationServices();
             builder.Services.AddPersistanceServices();
             builder.Services.AddInfrastructureServices();
+
+            
+            // Add services to the container.
             builder.Services.AddControllers().AddFluentValidation(conf => conf.RegisterValidatorsFromAssemblyContaining<CreateCustomer>());
+            
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -38,7 +43,9 @@ namespace BookAPI.API
                         ValidateIssuerSigningKey = true,
 
                         LifetimeValidator = ( notBefore, expires, securityToken, validationParameters) => expires != null ? expires>DateTime.UtcNow:false,
-                        IssuerSigningKey=new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Token:SigningKey"]))
+                        IssuerSigningKey=new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Token:SigningKey"])),
+
+                        NameClaimType =ClaimTypes.Name
                         
                     };
                 });

@@ -39,7 +39,7 @@ namespace BookAPI.API.Controllers
         //FromRoute
         public IActionResult GetById([FromRoute] int id)
         {
-            return Ok(customerReadRepository.GetById(id)); 
+            return Ok(customerReadRepository.GetByIdAsync(id)); 
         }
         [HttpPost]
         [AllowAnonymous]

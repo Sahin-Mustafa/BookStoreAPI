@@ -8,11 +8,11 @@ namespace BookAPI.Application.Repositories
 {
     public interface IWriteRepository<T> : IRepository<T> where T : class
     {
-        bool Add(T model);
-        bool AddRange(List<T> data);
+        Task<bool> AddAsync(T model);
+        Task<bool> AddRangeAsync(List<T> data);
         bool Delete(T model);
-        bool DeleteById(int id);
+        Task<bool> DeleteByIdAsync(int id);
         bool Update(T model);
-        int Save();
+        Task<int> SaveAsync();
     }
 }

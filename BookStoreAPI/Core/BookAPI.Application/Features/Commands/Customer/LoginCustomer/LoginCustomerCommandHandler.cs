@@ -22,7 +22,7 @@ namespace BookAPI.Application.Features.Commands.Customer.LoginCustomer
 
         public async Task<LoginCustomerCommandResponse> Handle(LoginCustomerCommandRequest request, CancellationToken cancellationToken)
         {
-            C.Customer customer = customerReadRepository.GetSingle(c => c.Email == request.Email && c.Password == request.Password);
+            C.Customer customer =await customerReadRepository.GetSingleAsync(c => c.Email == request.Email && c.Password == request.Password);
             if (customer == null)
                  throw new NotFoundCustomerException();
             

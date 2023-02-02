@@ -23,11 +23,11 @@ namespace BookAPI.Persistance.Repositories
 
         public IQueryable<T> GetAll() => Table;
 
-        public T GetById(int id) => Table.Find(id);
+        public async Task<T> GetByIdAsync(int id) => await Table.FindAsync(id);
 
-        public T GetSingle(Expression<Func<T, bool>> method) => Table.FirstOrDefault(method);
+        public async Task<T> GetSingleAsync(Expression<Func<T, bool>> method) => await Table.FirstOrDefaultAsync(method);
 
         public IQueryable<T> GetWhere(Expression<Func<T, bool>> method)=>Table.Where(method);
-        
+
     }
 }

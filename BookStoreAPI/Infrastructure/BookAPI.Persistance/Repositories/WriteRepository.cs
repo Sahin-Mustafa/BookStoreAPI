@@ -20,16 +20,16 @@ namespace BookAPI.Persistance.Repositories
         }
 
         public DbSet<T> Table => _context.Set<T>();
-
-        public bool Add(T model)
+       
+        public async Task<bool> AddAsync(T model)
         {
-            EntityEntry<T> entityEntry = Table.Add(model);
+            EntityEntry<T> entityEntry = await Table.AddAsync(model);
             return entityEntry.State == EntityState.Added;
         }
 
-        public bool AddRange(List<T> data)
+        public async Task<bool> AddRangeAsync(List<T> data)
         {
-            Table.AddRange(data);
+            await Table.AddRangeAsync(data);
             return true;
         }
 
@@ -38,16 +38,11 @@ namespace BookAPI.Persistance.Repositories
             EntityEntry<T> entityEntry = Table.Remove(model);
             return entityEntry.State == EntityState.Deleted;
         }
-
-        public bool DeleteById(int id)
+        public async Task<bool> DeleteByIdAsync(int id)
         {
-            EntityEntry<T> entityEntry = Table.Remove(Table.Find(id));
-            return entityEntry.State == EntityState.Deleted;
+            T entityEntry = await Table.FindAsync(id);
+            return Delete(entityEntry);
         }
-
-        
-
-        public int Save() => _context.SaveChanges();
 
         public bool Update(T model)
         {
@@ -55,5 +50,6 @@ namespace BookAPI.Persistance.Repositories
             return entityEntry.State == EntityState.Modified;
 
         }
+        async Task<int> IWriteRepository<T>.SaveAsync()=>await _context.SaveChangesAsync();
     }
 }
