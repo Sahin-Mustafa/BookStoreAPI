@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookAPI.Domain.Entites;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace BookAPI.Application.Features.Queries.GetAllCustomers
 {
     public class GetAllCustomersQueryResponse
     {
-        public int Id { get; set; }      
-        public string? Fullname { get; set; }       
+        public int Id { get; set; }
+        public string? Fullname { get; set; }
         public string Email { get; set; }
         public bool IsDelete { get; set; }
         public DateTime CreatedTime { get; set; }

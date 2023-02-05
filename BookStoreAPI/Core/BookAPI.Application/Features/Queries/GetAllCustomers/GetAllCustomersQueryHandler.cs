@@ -1,10 +1,6 @@
 ﻿using BookAPI.Application.Repositories;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace BookAPI.Application.Features.Queries.GetAllCustomers
 {

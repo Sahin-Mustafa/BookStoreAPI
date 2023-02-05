@@ -2,20 +2,16 @@
 using BookAPI.Application.Features.Commands.Customer.LoginCustomer;
 using BookAPI.Application.Features.Queries.GetAllCustomers;
 using BookAPI.Application.Repositories;
-using BookAPI.Domain.Entites;
-using BookAPI.Persistance.Context;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
 using System.Net;
 
 namespace BookAPI.API.Controllers
 {
     [Route("api/[controller]s")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = "admin")]
+    //[Authorize(AuthenticationSchemes = "admin")]
     public class CustomerController : ControllerBase
     {
         private ICustomerReadRepository customerReadRepository;

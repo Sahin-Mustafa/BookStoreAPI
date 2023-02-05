@@ -9,7 +9,6 @@ namespace BookAPI.Domain.Entites
             Books= new List<Book>();
         }
         public int Id { get; set; }
-        public int BookId { get; set; }
 
         [MaxLength(50)]
         public string Name { get; set; }
