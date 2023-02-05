@@ -12,8 +12,20 @@ namespace BookAPI.Persistance.Concretes
 {
     public class BookWriteRepository : WriteRepository<Book>,IBookWriteRepository
     {
-        public BookWriteRepository(BookAPIDbContext context) : base(context)
+        private IBookReadRepository bookReadRepository;
+        public BookWriteRepository(BookAPIDbContext context, IBookReadRepository bookReadRepository) : base(context)
         {
+            this.bookReadRepository = bookReadRepository;
+        }
+        public override async Task<bool> DeleteByIdAsync(int id)
+        {
+            Book book = await bookReadRepository.GetByIdAsync(id);
+            if(book == null)
+            {
+                return false;
+            }
+            book.IsDelete = true;
+            return true;
         }
     }
 }

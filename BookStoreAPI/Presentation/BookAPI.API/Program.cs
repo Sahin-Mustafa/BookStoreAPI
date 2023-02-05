@@ -20,7 +20,7 @@ namespace BookAPI.API
             //Cors
             builder.Services.AddCors(opt => opt.AddDefaultPolicy(policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
             //IoC
-            builder.Services.AddHttpContextAccessor();//clienten gelen requestlerikatmanlarda ulaþmamaýzý saðlar IHttpContextAccessor
+            builder.Services.AddHttpContextAccessor();//clienten gelen requestleri katmanlarda ulaþmamaýzý saðlar IHttpContextAccessor
             builder.Services.AddApplicationServices();
             builder.Services.AddPersistanceServices();
             builder.Services.AddInfrastructureServices();
@@ -33,7 +33,7 @@ namespace BookAPI.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer("ADMÝN",opt =>
+                .AddJwtBearer("admin",opt =>
                 {
                     opt.TokenValidationParameters = new()
                     {

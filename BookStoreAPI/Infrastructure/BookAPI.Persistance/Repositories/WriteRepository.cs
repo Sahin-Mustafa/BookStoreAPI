@@ -38,7 +38,7 @@ namespace BookAPI.Persistance.Repositories
             EntityEntry<T> entityEntry = Table.Remove(model);
             return entityEntry.State == EntityState.Deleted;
         }
-        public async Task<bool> DeleteByIdAsync(int id)
+        public virtual async Task<bool> DeleteByIdAsync(int id)
         {
             T entityEntry = await Table.FindAsync(id);
             return Delete(entityEntry);

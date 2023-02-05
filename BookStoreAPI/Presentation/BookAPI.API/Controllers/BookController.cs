@@ -1,4 +1,6 @@
 ﻿using BookAPI.Application.Features.Commands.Book.CreateBook;
+using BookAPI.Application.Features.Commands.Book.DeleteBook;
+using BookAPI.Application.Features.Commands.Book.UpdateBook;
 using BookAPI.Application.Features.Queries.Book.GetAllBooks;
 using BookAPI.Application.Repositories;
 using BookAPI.Application.Services;
@@ -53,6 +55,21 @@ namespace BookAPI.API.Controllers
             await bookWriteRepository.SaveAsync();
             return Ok();
         }
-       
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] DeleteBookCommandRequest deleteBookCommandRequest)
+        {
+            DeleteBookCommandResponse response = await mediator.Send(deleteBookCommandRequest);
+            return response.Success?  Ok(response) : BadRequest(response);
+        }
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody]UpdateBookCommandRequest updateBookCommandRequest)
+        {
+            UpdateBookCommandResponse response = await mediator.Send(updateBookCommandRequest);
+            return response.Success?  Ok(response) : BadRequest(response);
+        }
+
+
+
     }
 }
