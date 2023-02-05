@@ -21,7 +21,7 @@ namespace BookAPI.Persistance
             services.AddScoped<IFileService, FileService>();
             services.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
             services.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();
-            services.AddScoped<IBookWriteRepository, BookWriteRepository>();
+            services.AddScoped<IBookReadRepository, BookReadRepository>();
             services.AddScoped<IBookWriteRepository, BookWriteRepository>();
         }
     }

@@ -1,10 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace BookAPI.Application
 {
@@ -14,6 +10,7 @@ namespace BookAPI.Application
         {
             //find all handler, request and response and add IoC
             services.AddMediatR(typeof(ServiceRegistration));
+            services.AddHttpClient();
         }
 
     }
