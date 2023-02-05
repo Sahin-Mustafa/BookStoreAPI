@@ -19,7 +19,7 @@ namespace BookAPI.Application.Features.Commands.Book.UpdateBook
         public async Task<UpdateBookCommandResponse> Handle(UpdateBookCommandRequest request, CancellationToken cancellationToken)
         {
             B.Book book = bookReadRepository.GetWhere(x => x.Id == request.Id).Include(x => x.Category).Include(x => x.Authors).FirstOrDefault();
-            if (book == null)
+            if (book != null)
             {
                 book.CategoryId=request.CategoryId;
                 book.Name=request.Name;
